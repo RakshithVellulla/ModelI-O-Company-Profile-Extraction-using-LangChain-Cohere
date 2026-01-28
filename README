@@ -1,0 +1,159 @@
+Company Profile Extraction using LangChain & Cohere
+📌 Overview
+
+This project demonstrates how to build a structured information extraction pipeline using LangChain, Cohere LLM, and Pydantic.
+The application takes a company name as input, fetches relevant data from Wikipedia, and extracts key company details in a validated, structured format.
+
+The focus of this project is on:
+
+Document loading
+
+Prompt engineering
+
+Output parsing and validation
+
+Reliable LLM pipelines (not free-form text)
+
+🎯 Features
+
+🔍 Fetches company information directly from Wikipedia
+
+🧠 Uses Cohere LLM for intelligent data extraction
+
+🧩 Enforces a strict output schema using Pydantic
+
+📄 Produces consistent, structured company profiles
+
+⚙️ Built using modern LangChain runnable pipelines
+
+🏗️ Architecture Flow
+User Input (Company Name)
+        ↓
+WikipediaLoader (LangChain)
+        ↓
+Wikipedia Article Text
+        ↓
+PromptTemplate + Schema Instructions
+        ↓
+Cohere Language Model
+        ↓
+Raw Structured Output
+        ↓
+PydanticOutputParser
+        ↓
+Validated CompanyProfile Object
+
+🧪 Extracted Company Fields
+
+The application extracts and validates the following fields:
+
+Company Name
+
+Founder(s)
+
+Founded Date
+
+Revenue
+
+Number of Employees
+
+4-Line Company Summary
+
+Missing information is handled safely using optional fields.
+
+🛠️ Technologies & Libraries Used
+Core Framework
+
+LangChain – LLM orchestration and pipelines
+
+LLM Provider
+
+Cohere – Language model backend
+
+Model used: command-r-08-2024
+
+Data Loading
+
+WikipediaLoader (LangChain Community)
+
+Output Validation
+
+Pydantic – Schema definition and runtime validation
+
+Environment
+
+Google Colab – Execution environment & secret management
+
+📦 Installation
+
+Install all required dependencies:
+
+pip install langchain langchain-community langchain-cohere pydantic wikipedia
+
+🔑 API Key Setup (Cohere)
+
+Set your Cohere API key as an environment variable.
+
+Option 1: Google Colab (Recommended)
+
+Open Colab → 🔑 Secrets
+
+Add a secret:
+
+Name: COHERE_API_KEY
+
+Value: your Cohere API key
+
+Then load it in code:
+
+import os
+from google.colab import userdata
+
+os.environ["COHERE_API_KEY"] = userdata.get("COHERE_API_KEY")
+
+Option 2: Local / Temporary Setup
+import os
+os.environ["COHERE_API_KEY"] = "YOUR_COHERE_API_KEY"
+
+🚀 How to Run the Project
+
+Install dependencies
+
+Configure the Cohere API key
+
+Run the notebook cells in order
+
+Enter a company name when prompted
+
+Example input:
+
+Google
+
+
+Example output:
+
+Company Name : Google
+Founder      : Larry Page, Sergey Brin
+Founded Date : 1998
+Revenue      : USD 307 billion (2023)
+Employees    : ~182,000
+
+Summary:
+1. Google is a multinational technology company.
+2. It specializes in internet-related services and products.
+3. The company operates under Alphabet Inc.
+4. Google is a global leader in search and AI technologies.
+
+🧠 Key Learning Outcomes
+
+This project demonstrates:
+
+How to use document loaders for real-world data ingestion
+
+How to design schema-driven LLM outputs
+
+Why output parsers are essential for production systems
+
+How to handle LLM unpredictability safely
+
+How modern LangChain runnable pipelines work
